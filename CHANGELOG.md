@@ -1,3 +1,8 @@
-## 0.0.1 - 2023-01-20
+## 0.1.1
+- Added screenshots (a tablet with Android)
+- Added MIT license badge
+- Updated README.md with plataform compatibility
+- Updated CHANGELOG.md format
 
-* Initial version
+## 0.0.1
+- Initial version

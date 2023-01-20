@@ -1,14 +1,26 @@
 A simple and clean navigation menu.  
   
+[![pub package](https://img.shields.io/badge/license-MIT-purple.svg)](https://opensource.org/licenses/MIT)
+  
 | Top Menu | Bottom Menu |
 |:--------:|:-----------:|
 | [![](https://github.com/lopb/simple_navigation_menu/raw/master/example/assets/top_blue.gif)](https://github.com/lopb/simple_navigation_menu/raw/master/example/lib/main.dart) | [![](https://github.com/lopb/simple_navigation_menu/raw/master/example/assets/bottom_purple.gif)](https://github.com/lopb/simple_navigation_menu/raw/master/example/lib/main.dart) |
+  
+| Top Menu on a Tablet | Bottom Menu on a Tablet |
+|:--------------------:|:-----------------------:|
+| [![](https://github.com/lopb/simple_navigation_menu/raw/master/example/assets/top_blue_tablet.png)](https://github.com/lopb/simple_navigation_menu/raw/master/example/lib/main.dart) | [![](https://github.com/lopb/simple_navigation_menu/raw/master/example/assets/bottom_blue_tablet.png)](https://github.com/lopb/simple_navigation_menu/raw/master/example/lib/main.dart) |
   
 ## Features
 
 Simple menu that can be placed either on top or on bottom of the screens.  
   
 You can also pass up to 3 [AppBar Actions](https://api.flutter.dev/flutter/material/AppBar/actions.html) to a screen. Each action will consist of an icon, an icon color and a callback function to br run when the icon is pressed.  
+  
+## Platform support
+
+| Simple Navigation Menu | Android | iOS | macOS | Web | Windows | Linux |
+| ---------------------- | :-----: | :-: | :---: | :-: | :-----: | :---: |
+| Compatibility          | ✅      | ✅  | ✅   | ✅  | ✅     | ✅    |
   
 ## Getting started
 
@@ -56,7 +68,7 @@ For passing actions (icons), see [the example section](https://pub.dev/packages/
   
 Required:
 
-* **navMenuItemList**: the list of Menu Items to display, each is a SimpleNavItemModel type. The current limit is 10, but you probably shouldn't use more than 6 on a mobile fone, it will not look very good, but depents on the screen size and the size of the menu's title.
+* **navMenuItemList**: the list of Menu Items to display, each is a SimpleNavItemModel type. The current limit is 10, but you probably shouldn't use more than 6 on a mobile fone, it will not look very good, but all depends on the screen size and the size of the menu's title.
   
 Optional:
   
