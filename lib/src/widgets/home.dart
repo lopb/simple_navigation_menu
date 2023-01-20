@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:simple_navigation_menu/simple_nav_menu.dart';
+import 'package:simple_navigation_menu/simple_navigation_menu.dart';
 import 'package:simple_navigation_menu/src/model/nav_menu_item.dart';
 import 'package:simple_navigation_menu/src/widgets/menu.dart';
 import 'package:simple_navigation_menu/src/widgets/page_view.dart';
