@@ -1,0 +1,17 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+          "name": "Run",
+          "request": "launch",
+          "type": "dart",
+          "program": "example/lib/main.dart",
+        },
+        {
+          "name": "Unit/Widget Tests",
+          "request": "launch",
+          "type": "dart",
+          "program": "test/"
+        },
+    ]
+}
