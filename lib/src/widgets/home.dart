@@ -17,6 +17,10 @@ class SimpleNavHome extends StatefulWidget {
   final Color? backColorMenu;
   final Color? frontColorAppBar;
   final Color? backColorAppBar;
+  final bool? isTopAd;
+  final Widget? ad;
+  final Color? adBackColor;
+  final double? adHeight;
   const SimpleNavHome({
     Key? key,
     this.titleWidget,
@@ -29,6 +33,10 @@ class SimpleNavHome extends StatefulWidget {
     this.backColorMenu,
     this.frontColorAppBar,
     this.backColorAppBar,
+    this.isTopAd,
+    this.ad,
+    this.adBackColor,
+    this.adHeight,
   }) : super(key: key);
   @override
   State<SimpleNavHome> createState() => _SimpleNavHomeState();
@@ -47,9 +55,14 @@ class _SimpleNavHomeState extends State<SimpleNavHome>
   late Color backColorAppBar;
   late Widget titleWidget;
   late int initialPageIndex;
+  late bool isTopAd;
+  late Widget ad;
+  late Color adBackColor;
+  late double adHeight;
   late List<SimpleNavItemModel> navMenuItemList;
   static const int maxMenuSize = 10;
   static const int maxActionSize = 3;
+  static const double adDefaultHeight = 50.0;
 
   // Defines a menu item to show if user passed an empty list.
   final SimpleNavItemModel emptyNavItem =
@@ -81,6 +94,9 @@ class _SimpleNavHomeState extends State<SimpleNavHome>
     if (initialPageIndex > (widget.navMenuItemList.length - 1)) {
       _currentPage = widget.navMenuItemList.length - 1;
     }
+    isTopAd = widget.isTopAd ?? false;
+    adBackColor = widget.adBackColor ?? Colors.blue;
+    adHeight = widget.adHeight ?? adDefaultHeight;
   }
 
   /// Initializes the [_currentPage] and the [_controller] values, then rebuilds the widget.
@@ -108,24 +124,29 @@ class _SimpleNavHomeState extends State<SimpleNavHome>
 
   /// Defines the body of the screen as been the [SimpleNavMenu] and the [SimpleNavPageView]
   ///
-  /// Reverses the order if [isTopMenu] is false, so the [SimpleNavMenu] stays on the bottom.
+  /// Defines the order of the Widgets, the menu and the ad can be top or down, resulting in 4 different combinations.
   List<Widget> _getBodyColumnChildren() {
-    List<Widget> bodyColumnChildren = [
-      SimpleNavMenu(
-        controller: _controller,
-        currentPage: _currentPage,
-        navMenuItemList: navMenuItemList,
-        isTopMenu: isTopMenu,
-        frontColorMenu: frontColorMenu,
-        backColorMenu: backColorMenu,
-      ),
-      SimpleNavPageView(
-          controller: _controller, navMenuItemList: navMenuItemList),
-    ];
-    if (isTopMenu == false) {
-      bodyColumnChildren = bodyColumnChildren.reversed.toList();
-    }
-    return bodyColumnChildren;
+    /// Sets the Ad's Container height to 0 if Ad is null. The default is 50.0.
+    Container adContainer = Container(
+      height: widget.ad == null ? 0 : adHeight,
+      color: adBackColor,
+      child: widget.ad ?? const SizedBox.shrink(),
+    );
+    SimpleNavMenu menu = SimpleNavMenu(
+      controller: _controller,
+      currentPage: _currentPage,
+      navMenuItemList: navMenuItemList,
+      isTopMenu: isTopMenu,
+      frontColorMenu: frontColorMenu,
+      backColorMenu: backColorMenu,
+    );
+    SimpleNavPageView pageView = SimpleNavPageView(
+        controller: _controller, navMenuItemList: navMenuItemList);
+    if (isTopMenu && isTopAd) return [menu, adContainer, pageView];
+    if (isTopMenu && !isTopAd) return [menu, pageView, adContainer];
+    if (!isTopMenu && isTopAd) return [adContainer, pageView, menu];
+    if (!isTopMenu && !isTopAd) return [pageView, adContainer, menu];
+    return [];
   }
 
   Widget _body() {
@@ -146,7 +167,7 @@ class _SimpleNavHomeState extends State<SimpleNavHome>
         actions: navMenuItemList.elementAt(_currentPage).homeActions,
         foregroundColor: frontColorAppBar,
         backgroundColor: backColorAppBar,
-        elevation: isTopMenu ? 0 : null,
+        elevation: isTopMenu || isTopAd ? 0 : null,
       ),
       drawer: widget.appDrawer,
       body: _body(),

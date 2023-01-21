@@ -1,7 +1,12 @@
+import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:simple_navigation_menu/simple_navigation_menu.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 
 void main() {
+  // The next two lines (initializations) are there because of the Ad usage.
+  WidgetsFlutterBinding.ensureInitialized();
+  MobileAds.instance.initialize();
   runApp(const MyApp());
 }
 
@@ -22,7 +27,26 @@ class Example extends StatefulWidget {
   State<Example> createState() => _ExampleState();
 }
 
+// The _bannerAd, initState and dispose are only neded because of the Ad usage, so, if you don't plan on using any Ads, ignore them.
 class _ExampleState extends State<Example> {
+  BannerAd? _bannerAd;
+
+  @override
+  initState() {
+    super.initState();
+    AdHelper.initAds((ad) {
+      setState(() {
+        _bannerAd = ad as BannerAd;
+      });
+    });
+  }
+
+  @override
+  void dispose() {
+    _bannerAd?.dispose();
+    super.dispose();
+  }
+
   Widget _getExampleScreen(Color color, String text) {
     return Container(
       color: color,
@@ -75,12 +99,14 @@ class _ExampleState extends State<Example> {
     ];
   }
 
+  // A simple example of a callback function that will be called when the Action (AppBar Icon) will be pressed.
   _saveCallback() async {
     const snackBar = SnackBar(
         content: Text("Saved (example)"), duration: Duration(seconds: 2));
     ScaffoldMessenger.of(context).showSnackBar(snackBar);
   }
 
+  // A simple example of a callback function that will be called when the Action (AppBar Icon) will be pressed.
   _clearCallback() async {
     var confirmation = await _showExampleConfirmation(context) ?? false;
     if (confirmation != null &&
@@ -93,6 +119,7 @@ class _ExampleState extends State<Example> {
     }
   }
 
+  // Just a showDialog that will be called when you confirm an action. Nothing too relevant for your real world app.
   static _showExampleConfirmation(BuildContext context) {
     return showDialog(
       context: context,
@@ -121,6 +148,37 @@ class _ExampleState extends State<Example> {
       appDrawer: const Drawer(child: Center(child: Text("Drawer"))),
       navMenuItemList: _getNavMenuItemList(),
       isTopMenu: true,
+      isTopAd: false,
+      ad: _bannerAd != null ? AdWidget(ad: _bannerAd!) : null,
     );
+  }
+}
+
+// Helper Class to make it easier to use Ads.
+//
+// In case you want to adapt this Class for your app, remember to also copy the changes made to AndroidManifest.xml and Info.plist.
+class AdHelper {
+  static String get bannerAdUnitId {
+    if (Platform.isAndroid) {
+      return 'ca-app-pub-3940256099942544/6300978111';
+    } else if (Platform.isIOS) {
+      return 'ca-app-pub-3940256099942544/2934735716';
+    } else {
+      throw UnsupportedError('Unsupported platform');
+    }
+  }
+
+  static initAds(Function(Ad) initAdCallback) {
+    BannerAd(
+      adUnitId: AdHelper.bannerAdUnitId,
+      request: const AdRequest(),
+      size: AdSize.banner,
+      listener: BannerAdListener(
+        onAdLoaded: initAdCallback,
+        onAdFailedToLoad: (ad, err) {
+          ad.dispose();
+        },
+      ),
+    ).load();
   }
 }
