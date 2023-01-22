@@ -22,7 +22,7 @@ You can also pass up to 3 [AppBar Actions](https://api.flutter.dev/flutter/mater
 
 | Simple Navigation Menu | Android | iOS | macOS | Web | Windows | Linux |
 | ---------------------- | :-----: | :-: | :---: | :-: | :-----: | :---: |
-| Compatibility          | ✅      | ✅  | ✅   | ✅  | ✅     | ✅   |
+| Compatibility          |   ✅   |  ✅  |  ✅  | ✅ |   ✅   |  ✅  |
   
 ## Getting started
 
@@ -34,6 +34,7 @@ You should pass a list of Menu Items (SimpleNavItemModel) to the SimpleNavHome w
   
 ## Usage
   
+- Minimal usage
 ```dart
 // Fist you set up the Menu Items, consisting of a String title, a Widget screen and, optionally, up to 3 actions icons.
 List<SimpleNavItemModel> _menuItemList() {
@@ -52,9 +53,9 @@ SimpleNavHome(
   isTopMenu: true,
 );
 ```
-
+  
+- If you use state management, just wrap everything up like below.
 ```dart
-// If you use state management, just wrap everything up like below.
 return MultiProvider(
   providers: [
     ListenableProvider<ChangeNofitierOne>(create: (_) => changeNotifierOne),
@@ -63,9 +64,9 @@ return MultiProvider(
   child: const Example(),
 );
 ```
-
+  
+- If you want to use an Ad, just pass it to the Simple Navigation Menu like below. See the example section for details.
 ```dart
-// If you want to use an Ad, just pass it to the Simple Navigation Menu like below. See the example section for details.
 return SimpleNavHome(
   navMenuItemList: _getNavMenuItemList(),
   isTopAd: false,

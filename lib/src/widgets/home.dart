@@ -56,7 +56,6 @@ class _SimpleNavHomeState extends State<SimpleNavHome>
   late Widget titleWidget;
   late int initialPageIndex;
   late bool isTopAd;
-  late Widget ad;
   late Color adBackColor;
   late double adHeight;
   late List<SimpleNavItemModel> navMenuItemList;
@@ -72,6 +71,7 @@ class _SimpleNavHomeState extends State<SimpleNavHome>
   void initState() {
     super.initState();
     _initVariables();
+    _initPageIndex();
     _initPageController();
     _checkMaxSize();
   }
@@ -88,15 +88,21 @@ class _SimpleNavHomeState extends State<SimpleNavHome>
     widget.navMenuItemList.isEmpty
         ? navMenuItemList = [emptyNavItem]
         : navMenuItemList = widget.navMenuItemList;
-    initialPageIndex = widget.initialPageIndex ?? _currentPage;
-    _currentPage = initialPageIndex;
-    if (initialPageIndex < 0) _currentPage = 0;
-    if (initialPageIndex > (widget.navMenuItemList.length - 1)) {
-      _currentPage = widget.navMenuItemList.length - 1;
-    }
     isTopAd = widget.isTopAd ?? false;
     adBackColor = widget.adBackColor ?? Colors.blue;
     adHeight = widget.adHeight ?? adDefaultHeight;
+  }
+
+  /// Initializes the page indexes and mitigates some abnormal states.
+  void _initPageIndex() {
+    initialPageIndex = widget.initialPageIndex ?? _currentPage;
+    if (initialPageIndex < 0) {
+      initialPageIndex = 0;
+    }
+    if (initialPageIndex > (navMenuItemList.length - 1)) {
+      initialPageIndex = navMenuItemList.length - 1;
+    }
+    _currentPage = initialPageIndex;
   }
 
   /// Initializes the [_currentPage] and the [_controller] values, then rebuilds the widget.
