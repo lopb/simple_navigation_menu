@@ -1,6 +1,6 @@
 A simple and clean navigation menu.  
   
-[![pub package](https://img.shields.io/badge/license-MIT-purple.svg)](https://opensource.org/licenses/MIT)
+[![Build CI](https://github.com/lopb/simple_navigation_menu/actions/workflows/simple_navigation_menu.yml/badge.svg?branch=master)](https://github.com/lopb/simple_navigation_menu/actions/workflows/simple_navigation_menu.yml?branch=master) [![codecov](https://codecov.io/gh/lopb/simple_navigation_menu/branch/master/graph/badge.svg)](https://app.codecov.io/gh/lopb/simple_navigation_menu/tree/master?displayType=list) [![pub package](https://img.shields.io/badge/license-MIT-purple.svg)](https://opensource.org/licenses/MIT)
   
 | Top Menu | Bottom Menu | Top Menu & Bottom Ad |
 |:--------:|:-----------:|:--------------------:|

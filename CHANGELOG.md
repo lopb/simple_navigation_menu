@@ -1,6 +1,7 @@
 ## 0.1.2
 - Code Coverage (Unit and Widget tests): tests cover 100% of the source code!
 - Bugfix: when trying to use an empty menu item list now an special "empty" menu item will appear to warn the user, no exception will be thrown.
+- Included badges on README.md (Build CI and Codecov)
 - Formatted README.md
 
 ## 0.1.1

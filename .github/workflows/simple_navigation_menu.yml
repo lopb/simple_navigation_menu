@@ -1,9 +1,4 @@
-# This workflow uses actions that are not certified by GitHub.
-# They are provided by a third-party and are governed by
-# separate terms of service, privacy policy, and support
-# documentation.
-
-name: Dart
+name: simple_navigation_menu
 
 on:
   push:
@@ -14,19 +9,23 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-
+    environment: production
     steps:
       - uses: actions/checkout@v3
-      - uses: dart-lang/setup-dart@9a04e6d73cca37bd455e0608d7e5092f881fd603
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: "3.3.10"
+          channel: 'stable'
+          cache: true
 
       - name: Install dependencies
-        run: dart pub get
+        run: flutter pub get
 
       - name: Verify formatting
-        run: dart format --output=none --set-exit-if-changed .
+        run: flutter format --output=none --set-exit-if-changed .
 
       - name: Analyze project source
-        run: dart analyze --fatal-warnings --fatal-infos
+        run: flutter analyze --fatal-warnings --fatal-infos
 
       - name: Run tests and generate coverage report
         run: flutter test --coverage
@@ -35,7 +34,17 @@ jobs:
         uses: codecov/codecov-action@v3
         with:
           directory: ./coverage/
-          env_vars: OS,LINUX
           fail_ci_if_error: true
           name: codecov_simple_navigation_menu
           verbose: true
+
+      - name: SonarCloud Scan
+        uses: SonarSource/sonarcloud-github-action@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+
+      - name: Publish to pub.dev
+        uses: sakebook/actions-flutter-pub-publisher@v1.4.1
+        with:
+          credential: ${{ secrets.PUB_DEV_CREDENTIAL }}

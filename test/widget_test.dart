@@ -48,6 +48,20 @@ List<SimpleNavItemModel> getNavMenuItemListMultipleActions(int actionSize) {
   ];
 }
 
+List<SimpleNavItemModel> getNavMenuItemTextfield() {
+  return [
+    SimpleNavItemModel(
+      menuItemTitle: 'Menu 1',
+      screen: Wrap(
+        children: const [
+          Text("TextField"),
+          TextField(),
+        ],
+      ),
+    ),
+  ];
+}
+
 List<SimpleNavItemModel> getMultipleMenuItems(int menuSize) {
   return List.generate(
     menuSize,
@@ -80,6 +94,8 @@ Finder actionFinder =
 Finder adFinder =
     find.ancestor(of: find.text("Ad Text"), matching: find.byType(Container));
 Finder snackbarFinder = find.textContaining("Saved (example)");
+Finder textfieldFinder = find.byType(TextField);
+Finder textfieldUnfocusFinder = find.text("TextField");
 
 void main() {
   group('Widget tests', () {
@@ -178,11 +194,33 @@ void main() {
       expect(actionFinder, findsNWidgets(3));
     });
 
-    testWidgets('Home Widget :: tests initialPageIndex',
+    testWidgets('Home Widget :: tests valid initialPageIndex (1)',
         (WidgetTester tester) async {
       SimpleNavHome simpleNavHome = SimpleNavHome(
         navMenuItemList: getNavMenuItemList(),
         initialPageIndex: 1,
+      );
+      await tester.pumpWidget(MaterialApp(home: simpleNavHome));
+
+      expect(screen2Finder, findsOneWidget);
+    });
+
+    testWidgets('Home Widget :: tests invalid initialPageIndex (-1)',
+        (WidgetTester tester) async {
+      SimpleNavHome simpleNavHome = SimpleNavHome(
+        navMenuItemList: getNavMenuItemList(),
+        initialPageIndex: -1,
+      );
+      await tester.pumpWidget(MaterialApp(home: simpleNavHome));
+
+      expect(screen1Finder, findsOneWidget);
+    });
+
+    testWidgets('Home Widget :: tests invalid initialPageIndex (100)',
+        (WidgetTester tester) async {
+      SimpleNavHome simpleNavHome = SimpleNavHome(
+        navMenuItemList: getNavMenuItemList(),
+        initialPageIndex: 100,
       );
       await tester.pumpWidget(MaterialApp(home: simpleNavHome));
 
@@ -203,6 +241,23 @@ void main() {
 
       Size adSize = tester.getSize(adFinder.first);
       expect(adSize.height, equals(50.0));
+    });
+
+    testWidgets('Home Widget :: GestureDetector unfocus',
+        (WidgetTester tester) async {
+      SimpleNavHome simpleNavHome = SimpleNavHome(
+        titleWidget: myAppTitle,
+        appDrawer: const Drawer(),
+        navMenuItemList: getNavMenuItemTextfield(),
+      );
+      await tester.pumpWidget(MaterialApp(home: simpleNavHome));
+
+      await tester.tap(textfieldFinder);
+      await tester.pumpAndSettle();
+
+      await tester.tap(textfieldUnfocusFinder);
+      await tester.pumpAndSettle();
+      expect(textfieldUnfocusFinder, findsOneWidget);
     });
   });
 }

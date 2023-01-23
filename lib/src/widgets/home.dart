@@ -148,11 +148,15 @@ class _SimpleNavHomeState extends State<SimpleNavHome>
     );
     SimpleNavPageView pageView = SimpleNavPageView(
         controller: _controller, navMenuItemList: navMenuItemList);
-    if (isTopMenu && isTopAd) return [menu, adContainer, pageView];
-    if (isTopMenu && !isTopAd) return [menu, pageView, adContainer];
-    if (!isTopMenu && isTopAd) return [adContainer, pageView, menu];
-    if (!isTopMenu && !isTopAd) return [pageView, adContainer, menu];
-    return [];
+    if (isTopMenu && isTopAd) {
+      return [menu, adContainer, pageView];
+    } else if (isTopMenu && !isTopAd) {
+      return [menu, pageView, adContainer];
+    } else if (!isTopMenu && isTopAd) {
+      return [adContainer, pageView, menu];
+    } else {
+      return [pageView, adContainer, menu];
+    }
   }
 
   Widget _body() {
