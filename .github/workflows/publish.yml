@@ -15,4 +15,4 @@ jobs:
       - name: Publish
         uses: sakebook/actions-flutter-pub-publisher@v1.4.1
         with:
-          credential: ${{ secrets.PUB_DEV_CREDENTIAL }}
+          credential: ${{ secrets.CREDENTIAL_JSON }}
