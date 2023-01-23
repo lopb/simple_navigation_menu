@@ -38,12 +38,6 @@ jobs:
           name: codecov_simple_navigation_menu
           verbose: true
 
-      - name: SonarCloud Scan
-        uses: SonarSource/sonarcloud-github-action@master
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-
       - name: Publish to pub.dev
         uses: sakebook/actions-flutter-pub-publisher@v1.4.1
         with:
