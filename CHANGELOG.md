@@ -1,3 +1,6 @@
+## 0.1.3
+- Added optional parameter textScaleFactor that sets how much "zoom" is applied to the selected menu item. The default is 1.15 (15% larger than normal).
+
 ## 0.1.2
 - Code Coverage (Unit and Widget tests): tests cover 100% of the source code!
 - Bugfix: when trying to use an empty menu item list now an special "empty" menu item will appear to warn the user, no exception will be thrown.

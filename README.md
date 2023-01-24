@@ -90,6 +90,7 @@ Optional:
 * **isTopMenu**: a bool that defines if the menu should appear on the top or on the bottom of the screen. The default is true (top).
 * **appDrawer**: the drawer Widget to be used, if any. The default is null.
 * **initialPageIndex**: a int value for the initial index of the page you want. The default is 0 (first page on the left).
+* **textScaleFactor**: a double value that sets how much "zoom" is applied to the selected menu item. The default is 1.15 (15% larger than normal).
 * **frontColorMenu**: a Color value for the front of the menu (text/letters). The default is Colors.white.
 * **backColorMenu**: a Color value for the back of the menu (background). The default is Colors.blue.
 * **frontColorAppBar**: a Color value for the front of the AppBar (text/letters). The default is Colors.white.

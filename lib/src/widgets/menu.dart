@@ -11,6 +11,7 @@ class SimpleNavMenu extends StatelessWidget {
   final Color frontColorMenu;
   final Color backColorMenu;
   final bool isTopMenu;
+  final double textScaleFactor;
   const SimpleNavMenu({
     super.key,
     required this.controller,
@@ -19,6 +20,7 @@ class SimpleNavMenu extends StatelessWidget {
     required this.frontColorMenu,
     required this.backColorMenu,
     required this.isTopMenu,
+    required this.textScaleFactor,
   });
 
   // Adapts the widget to be on the bottom or the top.
@@ -45,7 +47,8 @@ class SimpleNavMenu extends StatelessWidget {
                 currentPage: currentPage,
                 controller: controller,
                 frontColor: frontColorMenu,
-                isTopMenu: isTopMenu))
+                isTopMenu: isTopMenu,
+                textScaleFactor: textScaleFactor))
             .toList(),
       ),
     );

@@ -21,6 +21,7 @@ class SimpleNavHome extends StatefulWidget {
   final Widget? ad;
   final Color? adBackColor;
   final double? adHeight;
+  final double? textScaleFactor;
   const SimpleNavHome({
     Key? key,
     this.titleWidget,
@@ -37,6 +38,7 @@ class SimpleNavHome extends StatefulWidget {
     this.ad,
     this.adBackColor,
     this.adHeight,
+    this.textScaleFactor,
   }) : super(key: key);
   @override
   State<SimpleNavHome> createState() => _SimpleNavHomeState();
@@ -58,6 +60,7 @@ class _SimpleNavHomeState extends State<SimpleNavHome>
   late bool isTopAd;
   late Color adBackColor;
   late double adHeight;
+  late double textScaleFactor;
   late List<SimpleNavItemModel> navMenuItemList;
   static const int maxMenuSize = 10;
   static const int maxActionSize = 3;
@@ -91,6 +94,7 @@ class _SimpleNavHomeState extends State<SimpleNavHome>
     isTopAd = widget.isTopAd ?? false;
     adBackColor = widget.adBackColor ?? Colors.blue;
     adHeight = widget.adHeight ?? adDefaultHeight;
+    textScaleFactor = widget.textScaleFactor ?? 1.15;
   }
 
   /// Initializes the page indexes and mitigates some abnormal states.
@@ -145,6 +149,7 @@ class _SimpleNavHomeState extends State<SimpleNavHome>
       isTopMenu: isTopMenu,
       frontColorMenu: frontColorMenu,
       backColorMenu: backColorMenu,
+      textScaleFactor: textScaleFactor,
     );
     SimpleNavPageView pageView = SimpleNavPageView(
         controller: _controller, navMenuItemList: navMenuItemList);

@@ -8,6 +8,7 @@ class SimpleNavMenuItem extends StatelessWidget {
   final PageController controller;
   final Color frontColor;
   final bool isTopMenu;
+  final double textScaleFactor;
   const SimpleNavMenuItem({
     super.key,
     required this.menuItemTitle,
@@ -16,6 +17,7 @@ class SimpleNavMenuItem extends StatelessWidget {
     required this.controller,
     required this.frontColor,
     required this.isTopMenu,
+    required this.textScaleFactor,
   });
 
   /// Adapts the widget to be on the bottom or the top.
@@ -57,9 +59,11 @@ class SimpleNavMenuItem extends StatelessWidget {
               isItemSelected ? BoxDecoration(border: _getBorder()) : null,
           child: Text(menuItemTitle,
               style: TextStyle(
-                  color: frontColor,
-                  fontWeight:
-                      isItemSelected ? FontWeight.bold : FontWeight.normal),
+                color: frontColor,
+                fontWeight:
+                    isItemSelected ? FontWeight.bold : FontWeight.normal,
+              ),
+              textScaleFactor: isItemSelected ? textScaleFactor : 1.0,
               textAlign: TextAlign.center),
         ),
       ),
