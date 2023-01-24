@@ -1,3 +1,6 @@
+## 0.1.4
+- Altered README.md to say that the only Drawer layout option is on the left side of the AppBar, no other choice in the foreseeable future. (But Pull Requests are wellcome)
+
 ## 0.1.3
 - Added optional parameter textScaleFactor that sets how much "zoom" is applied to the selected menu item. The default is 1.15 (15% larger than normal).
 

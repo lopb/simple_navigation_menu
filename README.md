@@ -102,7 +102,7 @@ Optional:
   
 ## Caveats
   
-* Drawers are only on the left side of the AppBar, for the time being.
+* The Drawer Widget can only be placed on the left side of the AppBar.
   
 ## Contributing
   
