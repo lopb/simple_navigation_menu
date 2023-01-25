@@ -1,3 +1,5 @@
+// ignore_for_file: public_member_api_docs
+
 import 'package:flutter/material.dart';
 
 import 'package:simple_navigation_menu/src/widgets/menu_item.dart';
@@ -23,7 +25,7 @@ class SimpleNavMenu extends StatelessWidget {
     required this.textScaleFactor,
   });
 
-  // Adapts the widget to be on the bottom or the top.
+  /// Adapts the widget to be on the bottom or the top.
   EdgeInsets _getPadding() {
     if (isTopMenu == true) {
       return const EdgeInsets.only(bottom: 1);

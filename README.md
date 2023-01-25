@@ -4,11 +4,11 @@ A simple and clean navigation menu.
   
 | Top Menu | Bottom Menu | Top Menu & Bottom Ad |
 |:--------:|:-----------:|:--------------------:|
-| [![](https://github.com/lopb/simple_navigation_menu/raw/master/example/assets/top_blue.gif)](https://github.com/lopb/simple_navigation_menu/raw/master/example/lib/main.dart) | [![](https://github.com/lopb/simple_navigation_menu/raw/master/example/assets/bottom_purple.gif)](https://github.com/lopb/simple_navigation_menu/raw/master/example/lib/main.dart) | [![](https://github.com/lopb/simple_navigation_menu/raw/master/example/assets/top_blue_ad.gif)](https://github.com/lopb/simple_navigation_menu/raw/master/example/lib/main.dart) |
+| ![](https://github.com/lopb/simple_navigation_menu/raw/master/example/assets/top_blue.gif) | ![](https://github.com/lopb/simple_navigation_menu/raw/master/example/assets/bottom_purple.gif) | ![](https://github.com/lopb/simple_navigation_menu/raw/master/example/assets/top_blue_ad.gif) |
   
 | Top Menu on a Tablet | Bottom Menu on a Tablet |
 |:--------------------:|:-----------------------:|
-| [![](https://github.com/lopb/simple_navigation_menu/raw/master/example/assets/top_blue_tablet.png)](https://github.com/lopb/simple_navigation_menu/raw/master/example/lib/main.dart) | [![](https://github.com/lopb/simple_navigation_menu/raw/master/example/assets/bottom_blue_tablet.png)](https://github.com/lopb/simple_navigation_menu/raw/master/example/lib/main.dart) |
+| <img src="https://github.com/lopb/simple_navigation_menu/raw/master/example/assets/top_blue_tablet.png" alt="top_blue_tablet" width="500"/> | <img src="https://github.com/lopb/simple_navigation_menu/raw/master/example/assets/bottom_blue_tablet.png" alt="bottom_blue_tablet" width="500"/> |
   
 ## Features
 

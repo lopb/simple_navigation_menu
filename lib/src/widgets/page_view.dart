@@ -1,3 +1,5 @@
+// ignore_for_file: public_member_api_docs
+
 import 'package:flutter/material.dart';
 
 import 'package:simple_navigation_menu/src/model/nav_menu_item.dart';

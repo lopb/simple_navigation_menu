@@ -7,21 +7,52 @@ import 'package:simple_navigation_menu/src/widgets/page_view.dart';
 
 /// Receives most of the user's parameters and provides the final scaffold for the user.
 class SimpleNavHome extends StatefulWidget {
+  /// Title to appear on the AppBar, can be any Widget but normally is a Text("String"). The default is SizedBox.shrink().
   final Widget? titleWidget;
+
+  /// The drawer Widget to be used, if any. The default is null.
   final Widget? appDrawer;
+
+  /// The list of Menu Items to display, each is a SimpleNavItemModel type. The current limit is 10, but you probably shouldn't use more than 6 on a mobile fone, it won't look very good, but all depends on the screen size and the size of the menu's title.
   final List<SimpleNavItemModel> navMenuItemList;
+
+  /// Defines if the menu should appear on the top or on the bottom of the screen. The default is true (top).
   final bool? isTopMenu;
+
+  /// Defines if the title should be centered inside AppBar. The default is false.
   final bool? centerTitle;
+
+  /// The initial index of the page you want. The default is 0 (first page on the left).
   final int? initialPageIndex;
+
+  /// A Color value for the front of the menu (text/letters). The default is Colors.white.
   final Color? frontColorMenu;
+
+  /// A Color value for the back of the menu (background). The default is Colors.blue.
   final Color? backColorMenu;
+
+  /// A Color value for the front of the AppBar (text/letters). The default is Colors.white.
   final Color? frontColorAppBar;
+
+  /// A Color value for the back of the AppBar (background). The default is Colors.blue.
   final Color? backColorAppBar;
+
+  /// Defines if the Ad should appear on the top or on the bottom of the screen. The default is false (bottom).
   final bool? isTopAd;
+
+  /// A Widget to show as an Ad in all of the menu's screens. Normally an AdWidget instance. The default is null (doesn't show anything).
   final Widget? ad;
+
+  /// A Color value for the background of the Ad. The default is Colors.blue.
   final Color? adBackColor;
+
+  /// The Ad's height. The default is 50.0.
   final double? adHeight;
+
+  /// Sets how much "zoom" is applied to the selected menu item. The default is 1.15 (15% larger than normal).
   final double? textScaleFactor;
+
+  /// Takes the required and options parameters that later will be initialized in the initState.
   const SimpleNavHome({
     Key? key,
     this.titleWidget,
@@ -45,8 +76,7 @@ class SimpleNavHome extends StatefulWidget {
 }
 
 /// Defines the [SimpleNavHome] state.
-class _SimpleNavHomeState extends State<SimpleNavHome>
-    with SingleTickerProviderStateMixin {
+class _SimpleNavHomeState extends State<SimpleNavHome> with SingleTickerProviderStateMixin {
   int _currentPage = 0;
   late final PageController _controller;
   late bool centerTitle;
@@ -66,9 +96,8 @@ class _SimpleNavHomeState extends State<SimpleNavHome>
   static const int maxActionSize = 3;
   static const double adDefaultHeight = 50.0;
 
-  // Defines a menu item to show if user passed an empty list.
-  final SimpleNavItemModel emptyNavItem =
-      SimpleNavItemModel(menuItemTitle: "Empty List", screen: Container());
+  /// Defines a menu item to show if user passed an empty list.
+  final SimpleNavItemModel emptyNavItem = SimpleNavItemModel(menuItemTitle: "Empty List", screen: Container());
 
   @override
   void initState() {
@@ -88,9 +117,7 @@ class _SimpleNavHomeState extends State<SimpleNavHome>
     isTopMenu = widget.isTopMenu ?? true;
     titleWidget = widget.titleWidget ?? const SizedBox.shrink();
     centerTitle = widget.centerTitle ?? false;
-    widget.navMenuItemList.isEmpty
-        ? navMenuItemList = [emptyNavItem]
-        : navMenuItemList = widget.navMenuItemList;
+    widget.navMenuItemList.isEmpty ? navMenuItemList = [emptyNavItem] : navMenuItemList = widget.navMenuItemList;
     isTopAd = widget.isTopAd ?? false;
     adBackColor = widget.adBackColor ?? Colors.blue;
     adHeight = widget.adHeight ?? adDefaultHeight;
@@ -126,8 +153,7 @@ class _SimpleNavHomeState extends State<SimpleNavHome>
     navMenuItemList = navMenuItemList.take(maxMenuSize).toList();
     for (var menuItem in navMenuItemList) {
       if (menuItem.homeActions != null) {
-        menuItem.homeActions =
-            menuItem.homeActions?.take(maxActionSize).toList();
+        menuItem.homeActions = menuItem.homeActions?.take(maxActionSize).toList();
       }
     }
   }
@@ -151,8 +177,7 @@ class _SimpleNavHomeState extends State<SimpleNavHome>
       backColorMenu: backColorMenu,
       textScaleFactor: textScaleFactor,
     );
-    SimpleNavPageView pageView = SimpleNavPageView(
-        controller: _controller, navMenuItemList: navMenuItemList);
+    SimpleNavPageView pageView = SimpleNavPageView(controller: _controller, navMenuItemList: navMenuItemList);
     if (isTopMenu && isTopAd) {
       return [menu, adContainer, pageView];
     } else if (isTopMenu && !isTopAd) {

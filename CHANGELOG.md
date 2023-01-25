@@ -1,5 +1,8 @@
 ## 0.1.4
 - Altered README.md to say that the only Drawer layout option is on the left side of the AppBar, no other choice in the foreseeable future. (But Pull Requests are wellcome)
+- Changed flutter_lints version from 2.0.0 to 2.0.1
+- Activated public_member_api_docs rule on lint
+- Commented all public APIs 
 
 ## 0.1.3
 - Added optional parameter textScaleFactor that sets how much "zoom" is applied to the selected menu item. The default is 1.15 (15% larger than normal).

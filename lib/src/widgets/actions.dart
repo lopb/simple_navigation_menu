@@ -4,14 +4,17 @@ import 'package:flutter/material.dart';
 ///
 /// Can be used to display Icons that behaves accordingly to a callbackFunction.
 class SimpleNavAction extends StatelessWidget {
+  /// The icon that will be used for this Action (ex: Icons.house)
   final IconData iconData;
+
+  /// The function that will be performed when the user taps on the icon.
   final Function() callbackFunction;
+
+  /// The optional color to be used on the defined icon. The default value is Colors.white.
   final Color? iconColor;
-  const SimpleNavAction(
-      {super.key,
-      required this.iconData,
-      required this.callbackFunction,
-      this.iconColor});
+
+  /// Takes the required icon [iconData], a function [callbackFunction] and an optional color for the icon [iconColor].
+  const SimpleNavAction({super.key, required this.iconData, required this.callbackFunction, this.iconColor});
 
   @override
   Widget build(BuildContext context) {
