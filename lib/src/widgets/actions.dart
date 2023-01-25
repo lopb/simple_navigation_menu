@@ -14,7 +14,11 @@ class SimpleNavAction extends StatelessWidget {
   final Color? iconColor;
 
   /// Takes the required icon [iconData], a function [callbackFunction] and an optional color for the icon [iconColor].
-  const SimpleNavAction({super.key, required this.iconData, required this.callbackFunction, this.iconColor});
+  const SimpleNavAction(
+      {super.key,
+      required this.iconData,
+      required this.callbackFunction,
+      this.iconColor});
 
   @override
   Widget build(BuildContext context) {

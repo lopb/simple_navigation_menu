@@ -16,5 +16,6 @@ class SimpleNavItemModel {
   List<SimpleNavAction>? homeActions;
 
   /// Takes the required title [menuItemTitle], a widget [screen] and an optional list of actions [homeActions].
-  SimpleNavItemModel({required this.menuItemTitle, required this.screen, this.homeActions});
+  SimpleNavItemModel(
+      {required this.menuItemTitle, required this.screen, this.homeActions});
 }

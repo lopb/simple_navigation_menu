@@ -76,7 +76,8 @@ class SimpleNavHome extends StatefulWidget {
 }
 
 /// Defines the [SimpleNavHome] state.
-class _SimpleNavHomeState extends State<SimpleNavHome> with SingleTickerProviderStateMixin {
+class _SimpleNavHomeState extends State<SimpleNavHome>
+    with SingleTickerProviderStateMixin {
   int _currentPage = 0;
   late final PageController _controller;
   late bool centerTitle;
@@ -97,7 +98,8 @@ class _SimpleNavHomeState extends State<SimpleNavHome> with SingleTickerProvider
   static const double adDefaultHeight = 50.0;
 
   /// Defines a menu item to show if user passed an empty list.
-  final SimpleNavItemModel emptyNavItem = SimpleNavItemModel(menuItemTitle: "Empty List", screen: Container());
+  final SimpleNavItemModel emptyNavItem =
+      SimpleNavItemModel(menuItemTitle: "Empty List", screen: Container());
 
   @override
   void initState() {
@@ -117,7 +119,9 @@ class _SimpleNavHomeState extends State<SimpleNavHome> with SingleTickerProvider
     isTopMenu = widget.isTopMenu ?? true;
     titleWidget = widget.titleWidget ?? const SizedBox.shrink();
     centerTitle = widget.centerTitle ?? false;
-    widget.navMenuItemList.isEmpty ? navMenuItemList = [emptyNavItem] : navMenuItemList = widget.navMenuItemList;
+    widget.navMenuItemList.isEmpty
+        ? navMenuItemList = [emptyNavItem]
+        : navMenuItemList = widget.navMenuItemList;
     isTopAd = widget.isTopAd ?? false;
     adBackColor = widget.adBackColor ?? Colors.blue;
     adHeight = widget.adHeight ?? adDefaultHeight;
@@ -153,7 +157,8 @@ class _SimpleNavHomeState extends State<SimpleNavHome> with SingleTickerProvider
     navMenuItemList = navMenuItemList.take(maxMenuSize).toList();
     for (var menuItem in navMenuItemList) {
       if (menuItem.homeActions != null) {
-        menuItem.homeActions = menuItem.homeActions?.take(maxActionSize).toList();
+        menuItem.homeActions =
+            menuItem.homeActions?.take(maxActionSize).toList();
       }
     }
   }
@@ -177,7 +182,8 @@ class _SimpleNavHomeState extends State<SimpleNavHome> with SingleTickerProvider
       backColorMenu: backColorMenu,
       textScaleFactor: textScaleFactor,
     );
-    SimpleNavPageView pageView = SimpleNavPageView(controller: _controller, navMenuItemList: navMenuItemList);
+    SimpleNavPageView pageView = SimpleNavPageView(
+        controller: _controller, navMenuItemList: navMenuItemList);
     if (isTopMenu && isTopAd) {
       return [menu, adContainer, pageView];
     } else if (isTopMenu && !isTopAd) {
