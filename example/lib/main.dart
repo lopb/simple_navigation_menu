@@ -27,7 +27,7 @@ class Example extends StatefulWidget {
   State<Example> createState() => _ExampleState();
 }
 
-// The _bannerAd, initState and dispose are only neded because of the Ad usage, so, if you don't plan on using any Ads, ignore them.
+// The _bannerAd, initState and dispose are only needed because of the Ad usage, so, if you don't plan on using any Ads, ignore them.
 class _ExampleState extends State<Example> {
   BannerAd? _bannerAd;
 
