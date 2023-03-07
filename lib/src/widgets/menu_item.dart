@@ -25,7 +25,7 @@ class SimpleNavMenuItem extends StatelessWidget {
   /// Adapts the widget to be on the bottom or the top.
   EdgeInsets _getPadding() {
     if (isTopMenu) {
-      return const EdgeInsets.only(bottom: 10, top: 15);
+      return const EdgeInsets.only(bottom: 10, top: 10);
     } else {
       return const EdgeInsets.only(bottom: 15, top: 10);
     }
